@@ -1,6 +1,6 @@
 import { createElement } from '../render';
 
-const renderTripEventItem = () => `
+const renderTripEventItems = () => `
 <ul class="trip-events__list">
             <li class="trip-events__item">
               <div class="event">
@@ -43,8 +43,8 @@ const renderTripEventItem = () => `
 `;
 
 
-export default class tripEventItem {
-  getTemplate = () => renderTripEventItem();
+export default class tripEventList {
+  getTemplate = () => renderTripEventItems();
 
   getElement = () => {
     if (!this.element) {
