@@ -1,26 +1,12 @@
 import tripFilter from './view/trip-filter.js';
 import {render} from './render.js';
-// import tripEventList from './view/trip-events-list.js';
-// import sortListTrip from './view/sort-list-trip.js';
-// import eventEdit from './view/event-edit.js';
+import BoardPresenter from './presenter/board-presenter.js';
 
 const pageHeader = document.querySelector('.page-header');
 const tripFilterControlPanel = pageHeader.querySelector('.trip-controls__filters');
-render(new tripFilter(), tripFilterControlPanel);
-
-
-// const tripEvents = document.querySelector('.trip-events');
-// render (new eventEdit(), tripEvents);
-// render (new sortListTrip(), tripEvents);
-
-
-// }
-
-
-import BoardPresenter from './presenter/board-presenter.js';
-
 const tripEvents = document.querySelector('.trip-events');
 
 const boardPresenter = new BoardPresenter({boardContainer: tripEvents});
 
+render(new tripFilter(), tripFilterControlPanel);
 boardPresenter.init();
