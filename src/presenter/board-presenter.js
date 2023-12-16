@@ -5,15 +5,18 @@ import eventEdit from '../view/event-edit.js';
 
 export default class BoardPresenter {
 
-  constructor({boardContainer}) {
+  constructor({boardContainer, liastPointsTripModel}) {
     this.boardContainer = boardContainer;
+    this.liastPointsTripModel = liastPointsTripModel;
   }
 
   init() {
+    this.liastPoints = [...this.liastPointsTripModel.getPoints()];
+
     render (new sortListTrip(), this.boardContainer);
     render (new eventEdit(), this.boardContainer);
-    for (let i = 1; i <= 3; i++) {
-      render (new tripEventList(), this.boardContainer);
+    for (let i = 0; i <= this.liastPoints.length; i++) {
+      render (new tripEventList({point: this.liastPoints[i]}), this.boardContainer);
     }
   }
 }
