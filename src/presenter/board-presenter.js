@@ -15,6 +15,7 @@ export default class BoardPresenter {
 
     render (new sortListTrip(), this.boardContainer);
     render (new eventEdit(), this.boardContainer);
+
     for (let i = 0; i <= this.liastPoints.length; i++) {
       render (new tripEventList({point: this.liastPoints[i]}), this.boardContainer);
     }

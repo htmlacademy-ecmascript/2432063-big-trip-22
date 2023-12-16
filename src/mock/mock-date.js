@@ -3,47 +3,83 @@ import { EVENT_TYPE } from '../const';
 
 const mockPointTrip = [
   {
-    dateTime: '15 мар',
-    eventType: getRandomArrayElement(EVENT_TYPE),
-    startTime: '',
-    endTime: '',
-    duration: '30M',
-    price: '100',
-    offer: [
-      'offer1',
-      'offer2'
-    ],
-    isFavorite: true,
-  },
-
-  {
-    dateTime: '16 мар',
-    eventType: getRandomArrayElement(EVENT_TYPE),
-    startTime: '',
-    endTime: '',
-    duration: '60M',
-    price: '200',
-    offer: [
-      'offer1',
-      'offer3'
-    ],
+    id: '001',
+    basePrice: '1100',
+    dateFrom: '2019-07-10T22:55:56.845Z',
+    dateTo: '2019-07-11T11:22:13.375Z',
+    destination: 'dest1',
     isFavorite: false,
+    offers: [
+      'offer1',
+      'offer2',
+    ],
+    type: getRandomArrayElement(EVENT_TYPE),
+
+    duration: '30M',
+
   },
 
   {
-    dateTime: '17 мар',
-    eventType: getRandomArrayElement(EVENT_TYPE),
-    startTime: '',
-    endTime: '',
-    duration: '90M',
-    price: '300',
-    offer: [ ],
+    id: '002',
+    basePrice: '2100',
+    dateFrom: '2019-07-10T22:55:56.845Z',
+    dateTo: '2019-07-11T11:22:13.375Z',
+    destination: 'dest1',
     isFavorite: true,
+    offers: ['offer3'],
+    type: getRandomArrayElement(EVENT_TYPE),
+
+    duration: '30M',
+  },
+
+  {
+    id: '003',
+    basePrice: '3100',
+    dateFrom: '2019-07-10T22:55:56.845Z',
+    dateTo: '2019-07-11T11:22:13.375Z',
+    destination: 'dest1',
+    isFavorite: false,
+    offers: [''],
+    type: getRandomArrayElement(EVENT_TYPE),
+
+    duration: '30M',
+  },
+];
+
+const mockOffers = [
+  {
+    type: 'Train',
+    offers: [
+      {
+        id: 'offer1',
+        title: 'Upgrade to a business class',
+        price: 120,
+      },
+    ],
+  },
+  {
+    type: 'Bus',
+    offers: [
+      {
+        id: 'offer2',
+        title: 'Upgrade to a business class',
+        price: 220,
+      },
+    ],
+  },
+  {
+    type: 'taxi',
+    offers: [
+      {
+        id: 'offer3',
+        title: 'Upgrade to a business class',
+        price: 320,
+      },
+    ],
   },
 ];
 
 
-
 const getRandomPointTrip = () => getRandomArrayElement(mockPointTrip);
 
-export {getRandomPointTrip};
+export {getRandomPointTrip, mockOffers};
