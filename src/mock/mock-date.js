@@ -7,9 +7,12 @@ const mockPointTrip = [
     eventType: getRandomArrayElement(EVENT_TYPE),
     startTime: '',
     endTime: '',
-    duratiom: '30M',
-    price: '100$',
-    offer: '',
+    duration: '30M',
+    price: '100',
+    offer: [
+      'offer1',
+      'offer2'
+    ],
     isFavorite: true,
   },
 
@@ -18,9 +21,12 @@ const mockPointTrip = [
     eventType: getRandomArrayElement(EVENT_TYPE),
     startTime: '',
     endTime: '',
-    duratiom: '60M',
-    price: '200$',
-    offer: '',
+    duration: '60M',
+    price: '200',
+    offer: [
+      'offer1',
+      'offer3'
+    ],
     isFavorite: false,
   },
 
@@ -29,12 +35,14 @@ const mockPointTrip = [
     eventType: getRandomArrayElement(EVENT_TYPE),
     startTime: '',
     endTime: '',
-    duratiom: '90M',
-    price: '300$',
-    offer: '',
+    duration: '90M',
+    price: '300',
+    offer: [ ],
     isFavorite: true,
   },
 ];
+
+
 
 const getRandomPointTrip = () => getRandomArrayElement(mockPointTrip);
 
