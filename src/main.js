@@ -9,13 +9,15 @@ const pageHeader = document.querySelector('.page-header');
 const tripFilterControlPanel = pageHeader.querySelector('.trip-controls__filters');
 const tripEvents = document.querySelector('.trip-events');
 
-const ooo = OffersModel();
+
 const liastPointsTripModel = new LiastPointsTripModel();
+const offersModel = new OffersModel();
+
 
 const boardPresenter = new BoardPresenter({
   boardContainer: tripEvents,
   liastPointsTripModel,
-
+  offersModel,
 });
 
 render(new tripFilter(), tripFilterControlPanel);

@@ -1,7 +1,7 @@
-import { mockOffers } from '../mock/mock-date';
+import { mockOfferss } from '../mock/mock-date';
 
 export default class OffersModel {
-  offers = mockOffers();
+  offers = mockOfferss;
 
-  getByType = (offerType) => this.offers.find(({ type }) => type === offerType);
+  getByType = () => this.offers;
 }

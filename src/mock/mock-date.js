@@ -4,7 +4,7 @@ import { EVENT_TYPE } from '../const';
 const mockPointTrip = [
   {
     id: '001',
-    basePrice: '1100',
+    basePrice: 1100,
     dateFrom: '2019-07-10T22:55:56.845Z',
     dateTo: '2019-07-11T11:22:13.375Z',
     destination: 'dest1',
@@ -21,7 +21,7 @@ const mockPointTrip = [
 
   {
     id: '002',
-    basePrice: '2100',
+    basePrice: 2100,
     dateFrom: '2019-07-10T22:55:56.845Z',
     dateTo: '2019-07-11T11:22:13.375Z',
     destination: 'dest1',
@@ -34,7 +34,7 @@ const mockPointTrip = [
 
   {
     id: '003',
-    basePrice: '3100',
+    basePrice: 3100,
     dateFrom: '2019-07-10T22:55:56.845Z',
     dateTo: '2019-07-11T11:22:13.375Z',
     destination: 'dest1',
@@ -81,5 +81,7 @@ const mockOffers = [
 
 
 const getRandomPointTrip = () => getRandomArrayElement(mockPointTrip);
+const mockOfferss = [...mockOffers];
 
-export {getRandomPointTrip, mockOffers};
+
+export {getRandomPointTrip, mockOfferss};

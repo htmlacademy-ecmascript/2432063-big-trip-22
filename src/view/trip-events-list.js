@@ -1,11 +1,11 @@
 import { createElement } from '../render';
 
 
-const renderTripEventItems = (point) => {
+const renderTripEventItems = (point, offer) => {
   const {basePrice, duration, type, isFavorite} = point;
-
   const favorite = isFavorite ? 'active' : '';
 
+  console.log(Object.entries(offer));
 
   return (
     `
@@ -53,11 +53,12 @@ const renderTripEventItems = (point) => {
 
 
 export default class tripEventList {
-  constructor ({point}){
+  constructor ({point, offer}){
     this.point = point;
+    this.offer = offer;
   }
 
-  getTemplate = () => renderTripEventItems(this.point);
+  getTemplate = () => renderTripEventItems(this.point, this.offer);
 
   getElement = () => {
     if (!this.element) {
