@@ -52,8 +52,8 @@ const mockOffers = [
     offers: [
       {
         id: 'offer1',
-        title: 'Upgrade to a business class',
-        price: 120,
+        title: 'Add luggage',
+        price: 30,
       },
     ],
   },
@@ -62,13 +62,73 @@ const mockOffers = [
     offers: [
       {
         id: 'offer2',
-        title: 'Upgrade to a business class',
-        price: 220,
+        title: 'Switch to comfort class',
+        price: 100,
       },
     ],
   },
   {
-    type: 'taxi',
+    type: 'Taxi',
+    offers: [
+      {
+        id: 'offer3',
+        title: 'Upgrade to a business class',
+        price: 320,
+      },
+    ],
+  },
+  {
+    type: 'Ship',
+    offers: [
+      {
+        id: 'offer3',
+        title: 'Add meal',
+        price: 15,
+      },
+    ],
+  },
+  {
+    type: 'Drive',
+    offers: [
+      {
+        id: 'offer3',
+        title: 'Choose seats',
+        price: 5,
+      },
+    ],
+  },
+  {
+    type: 'Flight',
+    offers: [
+      {
+        id: 'offer3',
+        title: 'Travel by train',
+        price: 40,
+      },
+    ],
+  },
+  {
+    type: 'Check-in',
+    offers: [
+      {
+        id: 'offer3',
+        title: 'Upgrade to a business class',
+        price: 320,
+      },
+    ],
+  },
+  {
+    type: 'Restaurant',
+    offers: [
+      {
+        id: 'offer3',
+        title: 'Upgrade to a business class',
+        price: 320,
+      },
+    ],
+  },
+  {
+    type: 'Sightseeing',
     offers: [
       {
         id: 'offer3',
@@ -85,3 +145,5 @@ const mockOfferss = [...mockOffers];
 
 
 export {getRandomPointTrip, mockOfferss};
+
+
