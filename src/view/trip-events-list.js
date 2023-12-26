@@ -5,7 +5,8 @@ const renderTripEventItems = (point, offer) => {
   const {basePrice, duration, type, isFavorite} = point;
   const favorite = isFavorite ? 'active' : '';
 
-  console.log(Object.entries(offer));
+  const getByType = (offerType) => offer.find(({ type }) => type === offerType);
+  const {title, price} = getByType(type).offers[0]
 
   return (
     `
@@ -26,14 +27,14 @@ const renderTripEventItems = (point, offer) => {
                   <p class="event__duration">${duration}</p>
                 </div>
                 <p class="event__price">
-                  &euro;&nbsp;<span class="event__price-value">${basePrice}</span>
+                  &euro;&nbsp;<span class="event__price-value">${basePrice + price}</span>
                 </p>
                 <h4 class="visually-hidden">Offers:</h4>
                 <ul class="event__selected-offers">
                   <li class="event__offer">
-                    <span class="event__offer-title">Order Uber</span>
+                    <span class="event__offer-title">${title}</span>
                     &plus;&euro;&nbsp;
-                    <span class="event__offer-price">20</span>
+                    <span class="event__offer-price">${price}</span>
                   </li>
                 </ul>
                 <button class="event__favorite-btn event__favorite-btn--${favorite}" type="button">

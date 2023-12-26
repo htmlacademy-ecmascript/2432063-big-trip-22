@@ -19,7 +19,7 @@ export default class BoardPresenter {
     render (new eventEdit(), this.boardContainer);
 
     for (let i = 0; i <= this.liastPoints.length; i++) {
-      render (new tripEventList({point: this.liastPoints[i], offer: this.offersModel[i]}), this.boardContainer);
+      render (new tripEventList({point: this.liastPoints[i], offer: this.offersModel}), this.boardContainer);
     }
   }
 }
