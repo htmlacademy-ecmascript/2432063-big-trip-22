@@ -1,6 +1,18 @@
 import { getRandomArrayElement } from '../utils';
 import { EVENT_TYPE } from '../const';
 
+const CITIES = ['Amsterdam', 'Chamonix', 'Geneva', 'Sofia'];
+
+const LOREMS = [
+  'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+  'Cras aliquet varius magna, non porta ligula feugiat eget.',
+  'Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.',
+  'Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.',
+  'Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.',
+  'Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat.',
+  'Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.',
+];
+
 const mockPointTrip = [
   {
     id: '001',
@@ -24,7 +36,7 @@ const mockPointTrip = [
     basePrice: 2100,
     dateFrom: '2019-07-10T22:55:56.845Z',
     dateTo: '2019-07-11T11:22:13.375Z',
-    destination: 'dest1',
+    destination: 'dest2',
     isFavorite: true,
     offers: ['offer3'],
     type: getRandomArrayElement(EVENT_TYPE),
@@ -37,7 +49,7 @@ const mockPointTrip = [
     basePrice: 3100,
     dateFrom: '2019-07-10T22:55:56.845Z',
     dateTo: '2019-07-11T11:22:13.375Z',
-    destination: 'dest1',
+    destination: 'dest3',
     isFavorite: false,
     offers: [''],
     type: getRandomArrayElement(EVENT_TYPE),
@@ -139,11 +151,48 @@ const mockOffers = [
   },
 ];
 
+const mockDestinations = [
+  {
+    id: 'dest1',
+    description: getRandomArrayElement(LOREMS),
+    name: getRandomArrayElement(CITIES),
+    pictures: [
+      {
+        src: `https://loremflickr.com/248/152?random=${Math.random()}`,
+        description: 'Chamonix parliament building',
+      },
+    ],
+  },
+  {
+    id: 'dest2',
+    description: getRandomArrayElement(LOREMS),
+    name: getRandomArrayElement(CITIES),
+    pictures: [
+      {
+        src: `https://loremflickr.com/248/152?random=${Math.random()}`,
+        description: 'Chamonix parliament building',
+      },
+    ],
+  },
+  {
+    id: 'dest3',
+    description: getRandomArrayElement(LOREMS),
+    name: getRandomArrayElement(CITIES),
+    pictures: [
+      {
+        src: `https://loremflickr.com/248/152?random=${Math.random()}`,
+        description: 'Chamonix parliament building',
+      },
+    ],
+  },
+];
+
 
 const getRandomPointTrip = () => getRandomArrayElement(mockPointTrip);
+
 const mockOfferss = [...mockOffers];
+const loadDestinations = [...mockDestinations];
 
-
-export {getRandomPointTrip, mockOfferss};
+export {getRandomPointTrip, mockOfferss, loadDestinations};
 
 
