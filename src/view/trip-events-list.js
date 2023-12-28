@@ -11,7 +11,6 @@ const renderTripEventItems = (point, offer, destinations) => {
   const {title, price} = getByType(type).offers[0];
   const {name} = getByDest(destination);
 
-
   return (
     `
     <ul class="trip-events__list">
