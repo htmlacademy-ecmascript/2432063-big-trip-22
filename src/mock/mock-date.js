@@ -34,8 +34,8 @@ const mockPointTrip = [
   {
     id: '002',
     basePrice: 2100,
-    dateFrom: '2019-07-10T22:55:56.845Z',
-    dateTo: '2019-07-11T11:22:13.375Z',
+    dateFrom: '2019-07-12T22:55:56.845Z',
+    dateTo: '2019-07-13T11:22:13.375Z',
     destination: 'dest2',
     isFavorite: true,
     offers: ['offer3'],
@@ -47,8 +47,8 @@ const mockPointTrip = [
   {
     id: '003',
     basePrice: 3100,
-    dateFrom: '2019-07-10T22:55:56.845Z',
-    dateTo: '2019-07-11T11:22:13.375Z',
+    dateFrom: '2019-07-14T22:55:56.845Z',
+    dateTo: '2019-07-18T11:22:13.375Z',
     destination: 'dest3',
     isFavorite: false,
     offers: [''],

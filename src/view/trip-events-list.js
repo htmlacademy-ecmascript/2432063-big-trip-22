@@ -1,8 +1,9 @@
 import { createElement } from '../render';
+import { getDuratiomAsString, getHoursFromString, getMinutesFromString, normalizeEventDate } from '../utils';
 
 
 const renderTripEventItems = (point, offer, destinations) => {
-  const {basePrice, duration, type, isFavorite, destination} = point;
+  const {dateFrom, dateTo, basePrice, duration, type, isFavorite, destination} = point;
   const favorite = isFavorite ? 'active' : '';
 
   const getByType = (offerType) => offer.find(({ type }) => type === offerType);
@@ -16,18 +17,19 @@ const renderTripEventItems = (point, offer, destinations) => {
     <ul class="trip-events__list">
       <li class="trip-events__item">
         <div class="event">
-          <time class="event__date" datetime="2019-03-18">MAR 18</time>
+          <time class="event__date" datetime=${dateFrom}> ${normalizeEventDate(dateFrom)}</time>
             <div class="event__type">
                   <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
                 </div>
                 <h3 class="event__title">${type} ${name}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
-                    <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
+                    <time class="event__start-time" datetime="${dateFrom}"> ${getHoursFromString(dateFrom)}:
+                    ${getMinutesFromString(dateFrom)}</time>
                     &mdash;
-                    <time class="event__end-time" datetime="2019-03-18T11:00">11:00</time>
+                    <time class="event__end-time" datetime="${dateTo}">${getHoursFromString(dateTo)}:${getMinutesFromString(dateTo)}</time>
                   </p>
-                  <p class="event__duration">${duration}</p>
+                  <p class="event__duration">${getDuratiomAsString(dateFrom, dateTo)}</p>
                 </div>
                 <p class="event__price">
                   &euro;&nbsp;<span class="event__price-value">${basePrice + price}</span>
