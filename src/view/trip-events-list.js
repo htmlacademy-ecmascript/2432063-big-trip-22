@@ -1,12 +1,16 @@
 import { createElement } from '../render';
 
 
-const renderTripEventItems = (point, offer) => {
-  const {basePrice, duration, type, isFavorite} = point;
+const renderTripEventItems = (point, offer, destinations) => {
+  const {basePrice, duration, type, isFavorite, destination} = point;
   const favorite = isFavorite ? 'active' : '';
 
   const getByType = (offerType) => offer.find(({ type }) => type === offerType);
-  const {title, price} = getByType(type).offers[0]
+  const getByDest = (offerType) => destinations.find(({ id }) => id === offerType);
+
+  const {title, price} = getByType(type).offers[0];
+  const {name} = getByDest(destination);
+
 
   return (
     `
@@ -17,7 +21,7 @@ const renderTripEventItems = (point, offer) => {
             <div class="event__type">
                   <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
                 </div>
-                <h3 class="event__title">${type} Amsterdam</h3>
+                <h3 class="event__title">${type} ${name}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
                     <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
@@ -54,12 +58,13 @@ const renderTripEventItems = (point, offer) => {
 
 
 export default class tripEventList {
-  constructor ({point, offer}){
+  constructor ({point, offer, destinations}){
     this.point = point;
     this.offer = offer;
+    this.destinations = destinations;
   }
 
-  getTemplate = () => renderTripEventItems(this.point, this.offer);
+  getTemplate = () => renderTripEventItems(this.point, this.offer, this.destinations);
 
   getElement = () => {
     if (!this.element) {
