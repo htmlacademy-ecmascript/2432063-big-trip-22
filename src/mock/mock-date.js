@@ -27,8 +27,6 @@ const mockPointTrip = [
     ],
     type: getRandomArrayElement(EVENT_TYPE),
 
-    duration: '30M',
-
   },
 
   {
@@ -41,7 +39,6 @@ const mockPointTrip = [
     offers: ['offer3'],
     type: getRandomArrayElement(EVENT_TYPE),
 
-    duration: '30M',
   },
 
   {
@@ -54,7 +51,6 @@ const mockPointTrip = [
     offers: [''],
     type: getRandomArrayElement(EVENT_TYPE),
 
-    duration: '30M',
   },
 ];
 

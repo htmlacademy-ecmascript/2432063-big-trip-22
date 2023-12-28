@@ -3,7 +3,7 @@ import { getDuratiomAsString, getHoursFromString, getMinutesFromString, normaliz
 
 
 const renderTripEventItems = (point, offer, destinations) => {
-  const {dateFrom, dateTo, basePrice, duration, type, isFavorite, destination} = point;
+  const {dateFrom, dateTo, basePrice, type, isFavorite, destination} = point;
   const favorite = isFavorite ? 'active' : '';
 
   const getByType = (offerType) => offer.find(({ type }) => type === offerType);
