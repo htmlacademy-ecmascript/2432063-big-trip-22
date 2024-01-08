@@ -1,7 +1,7 @@
-import { loadDestinations } from '../mock/mock-date';
-
 export default class DestinationsModel {
-  destinations = loadDestinations;
+  constructor(destinations) {
+    this.destinations = destinations;
+  }
 
   getById = () => this.destinations;
 }

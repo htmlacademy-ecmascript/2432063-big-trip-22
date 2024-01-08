@@ -5,9 +5,9 @@ import eventEdit from '../view/event-edit.js';
 
 export default class BoardPresenter {
 
-  constructor({boardContainer, liastPointsTripModel, offersModel, destinationsModel}) {
+  constructor({boardContainer, listPointsTripModel, offersModel, destinationsModel}) {
     this.boardContainer = boardContainer;
-    this.liastPointsTripModel = liastPointsTripModel;
+    this.liastPointsTripModel = listPointsTripModel;
     this.offersModel = offersModel;
     this.destinationsModel = destinationsModel;
   }
