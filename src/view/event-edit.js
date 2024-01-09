@@ -1,4 +1,4 @@
-import {createElement} from '../render.js';
+import AbstractView from '../framework/view/abstract-view';
 import { EVENT_TYPE } from '../const.js';
 
 const eventTypes = () => (
@@ -140,24 +140,13 @@ const renderEeventEdit = (destinations) => {
 
 };
 
-export default class eventEdit {
+export default class eventEdit extends AbstractView {
   constructor ({destinations}){
+    super();
     this.destinations = destinations;
   }
 
-  getTemplate() {
+  get template() {
     return renderEeventEdit(this.destinations);
-  }
-
-  getElement() {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  }
-
-  removeElement() {
-    this.element = null;
   }
 }

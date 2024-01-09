@@ -3,7 +3,7 @@ import BoardPresenter from './presenter/board-presenter.js';
 import LiastPointsTripModel from './model/trip-events-list-model.js';
 import OffersModel from './model/offers-model.js';
 import DestinationsModel from './model/destinations-model.js';
-import {render} from './render.js';
+import {render} from './framework/render';
 import { mockOfferss, loadDestinations } from './mock/mock-date.js';
 
 const pageHeader = document.querySelector('.page-header');
