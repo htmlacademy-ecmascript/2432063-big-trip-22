@@ -26,7 +26,7 @@ const renderTripFilter = () => `
 </form>
 `;
 
-export default class tripFilter {
+export default class TripFilter {
   getTemplate = () => renderTripFilter();
 
   getElement = () => {
