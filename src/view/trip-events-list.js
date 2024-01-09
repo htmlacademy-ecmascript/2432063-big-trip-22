@@ -1,38 +1,45 @@
 import { createElement } from '../render';
+import { getDuratiomAsString, getHoursFromString, getMinutesFromString, normalizeEventDate } from '../utils';
 
 
-const renderTripEventItems = (point) => {
-  const {price, duration, eventType, isFavorite} = point;
+const renderTripEventItems = (point, offer, destinations) => {
+  const {dateFrom, dateTo, basePrice, type, isFavorite, destination} = point;
   const favorite = isFavorite ? 'active' : '';
 
+  const getByType = (offerType) => offer.find(() => type === offerType);
+  const getByDest = (offerType) => destinations.find(({ id }) => id === offerType);
+
+  const {title, price} = getByType(type).offers[0];
+  const {name} = getByDest(destination);
 
   return (
     `
     <ul class="trip-events__list">
       <li class="trip-events__item">
         <div class="event">
-          <time class="event__date" datetime="2019-03-18">MAR 18</time>
+          <time class="event__date" datetime=${dateFrom}> ${normalizeEventDate(dateFrom)}</time>
             <div class="event__type">
-                  <img class="event__type-icon" width="42" height="42" src="img/icons/taxi.png" alt="Event type icon">
+                  <img class="event__type-icon" width="42" height="42" src="img/icons/${type.toLowerCase()}.png" alt="Event type icon">
                 </div>
-                <h3 class="event__title">${eventType} Amsterdam</h3>
+                <h3 class="event__title">${type} ${name}</h3>
                 <div class="event__schedule">
                   <p class="event__time">
-                    <time class="event__start-time" datetime="2019-03-18T10:30">10:30</time>
+                    <time class="event__start-time" datetime="${dateFrom}"> ${getHoursFromString(dateFrom)}:
+                    ${getMinutesFromString(dateFrom)}</time>
                     &mdash;
-                    <time class="event__end-time" datetime="2019-03-18T11:00">11:00</time>
+                    <time class="event__end-time" datetime="${dateTo}">${getHoursFromString(dateTo)}:${getMinutesFromString(dateTo)}</time>
                   </p>
-                  <p class="event__duration">${duration}</p>
+                  <p class="event__duration">${getDuratiomAsString(dateFrom, dateTo)}</p>
                 </div>
                 <p class="event__price">
-                  &euro;&nbsp;<span class="event__price-value">${price}</span>
+                  &euro;&nbsp;<span class="event__price-value">${basePrice + price}</span>
                 </p>
                 <h4 class="visually-hidden">Offers:</h4>
                 <ul class="event__selected-offers">
                   <li class="event__offer">
-                    <span class="event__offer-title">Order Uber</span>
+                    <span class="event__offer-title">${title}</span>
                     &plus;&euro;&nbsp;
-                    <span class="event__offer-price">20</span>
+                    <span class="event__offer-price">${price}</span>
                   </li>
                 </ul>
                 <button class="event__favorite-btn event__favorite-btn--${favorite}" type="button">
@@ -52,11 +59,13 @@ const renderTripEventItems = (point) => {
 
 
 export default class tripEventList {
-  constructor ({point}){
+  constructor ({point, offer, destinations}){
     this.point = point;
+    this.offer = offer;
+    this.destinations = destinations;
   }
 
-  getTemplate = () => renderTripEventItems(this.point);
+  getTemplate = () => renderTripEventItems(this.point, this.offer, this.destinations);
 
   getElement = () => {
     if (!this.element) {
