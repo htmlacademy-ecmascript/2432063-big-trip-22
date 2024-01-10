@@ -59,15 +59,17 @@ const renderTripEventItems = (point, offer, destinations) => {
 
 
 export default class tripEventList extends AbstractView {
-
+  #point = null;
+  #offer = null;
+  #destinations = null;
   constructor ({point, offer, destinations}){
     super();
-    this.point = point;
-    this.offer = offer;
-    this.destinations = destinations;
+    this.#point = point;
+    this.#offer = offer;
+    this.#destinations = destinations;
   }
 
   get template() {
-    return renderTripEventItems(this.point, this.offer, this.destinations);
+    return renderTripEventItems(this.#point, this.#offer, this.#destinations);
   }
 }

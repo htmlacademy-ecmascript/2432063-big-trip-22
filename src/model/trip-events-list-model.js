@@ -3,9 +3,12 @@ import { getRandomPointTrip } from '../mock/mock-date';
 const POINTS_COUNT = 3;
 
 export default class LiastPointsTripModel {
+  #listPointsTrip = null;
   constructor() {
-    this.listPointsTrip = Array.from({ length: POINTS_COUNT }, getRandomPointTrip);
+    this.#listPointsTrip = Array.from({ length: POINTS_COUNT }, getRandomPointTrip);
   }
 
-  getPoints = () => this.listPointsTrip;
+  get points () {
+    return this.#listPointsTrip;
+  }
 }

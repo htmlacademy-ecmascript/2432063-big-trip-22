@@ -13,9 +13,9 @@ export default class BoardPresenter {
   }
 
   init() {
-    this.liastPoints = [...this.liastPointsTripModel.getPoints()];
-    this.offersModel = [...this.offersModel.getByType()];
-    this.destinations = [...this.destinationsModel.getById()];
+    this.liastPoints = [...this.liastPointsTripModel.points];
+    this.offersModel = [...this.offersModel.byType];
+    this.destinations = [...this.destinationsModel.byId];
 
     render (new sortListTrip(), this.boardContainer);
     render (new eventEdit({destinations: this.destinations}), this.boardContainer);

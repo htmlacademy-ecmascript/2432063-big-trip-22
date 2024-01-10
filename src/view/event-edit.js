@@ -141,12 +141,13 @@ const renderEeventEdit = (destinations) => {
 };
 
 export default class eventEdit extends AbstractView {
+  #destinations = null;
   constructor ({destinations}){
     super();
-    this.destinations = destinations;
+    this.#destinations = destinations;
   }
 
   get template() {
-    return renderEeventEdit(this.destinations);
+    return renderEeventEdit(this.#destinations);
   }
 }
