@@ -27,7 +27,14 @@ export default class BoardPresenter {
     render (new eventEdit({destinations: this.#destinations}), this.#boardContainer);
 
     for (let i = 0; i <= this.#liastPoints.length; i++) {
-      render (new tripEventList({point: this.#liastPoints[i], offer: this.#offersModel, destinations: this.#destinations}), this.#boardContainer);
+      this.#renderPoint(this.#liastPoints[i], this.#offersModel, this.#destinations);
     }
   }
+
+  #renderPoint(point, offer, destinations) {
+    const pointComponent = new tripEventList({point, offer, destinations});
+    render (pointComponent, this.#boardContainer);
+  }
 }
+
+
