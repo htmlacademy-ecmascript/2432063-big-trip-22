@@ -1,4 +1,4 @@
-import { render } from '../framework/render';
+import { render, replace } from '../framework/render';
 import tripEventList from '../view/trip-events-list.js';
 import sortListTrip from '../view/sort-list-trip.js';
 import eventEdit from '../view/event-edit.js';
@@ -24,15 +24,47 @@ export default class BoardPresenter {
     this.#destinations = [...this.#destinationsModel.byId];
 
     render (new sortListTrip(), this.#boardContainer);
-    render (new eventEdit({destinations: this.#destinations}), this.#boardContainer);
 
     for (let i = 0; i <= this.#liastPoints.length; i++) {
-      this.#renderPoint(this.#liastPoints[i], this.#offersModel, this.#destinations);
+      this.#renderPoint(this.#destinations, this.#liastPoints[i], this.#offersModel);
     }
   }
 
-  #renderPoint(point, offer, destinations) {
-    const pointComponent = new tripEventList({point, offer, destinations});
+  #renderPoint(destinations, point, offer) {
+
+    const escKeyDownHandler = (evt) => {
+      if (evt.key === 'Escape') {
+        evt.preventDefault();
+        replaceEditToPoint();
+        document.removeEventListener('keydown', escKeyDownHandler);
+      }
+    };
+
+    const pointComponent = new tripEventList({
+      destinations,
+      point,
+      offer,
+      onPointClick: () => {
+        replacePoinToEdit();
+        document.addEventListener('keydown', escKeyDownHandler);
+      }
+    });
+    const pointEdit = new eventEdit({
+      destinations,
+      onSaveEdit: () => {
+        replaceEditToPoint();
+        document.removeEventListener('keydown', escKeyDownHandler);
+      }
+    });
+
+    function replacePoinToEdit() {
+      replace(pointEdit, pointComponent);
+    }
+
+    function replaceEditToPoint() {
+      replace(pointComponent, pointEdit);
+    }
+
     render (pointComponent, this.#boardContainer);
   }
 }

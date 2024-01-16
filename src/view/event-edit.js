@@ -142,12 +142,22 @@ const renderEeventEdit = (destinations) => {
 
 export default class eventEdit extends AbstractView {
   #destinations = null;
-  constructor ({destinations}){
+  #handleSaveEdit = null;
+
+  constructor ({destinations, onSaveEdit}){
     super();
     this.#destinations = destinations;
+    this.#handleSaveEdit = onSaveEdit;
+
+    this.element.querySelector('.event__save-btn').addEventListener('click', this.#SaveEditHandler);
   }
 
   get template() {
     return renderEeventEdit(this.#destinations);
   }
+
+  #SaveEditHandler = (evt) => {
+    evt.preventDefault();
+    this.#handleSaveEdit();
+  };
 }

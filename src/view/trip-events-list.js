@@ -2,7 +2,7 @@ import AbstractView from '../framework/view/abstract-view';
 import { getDuratiomAsString, getHoursFromString, getMinutesFromString, normalizeEventDate } from '../utils';
 
 
-const renderTripEventItems = (point, offer, destinations) => {
+const renderTripEventItems = (destinations, point, offer) => {
   const {dateFrom, dateTo, basePrice, type, isFavorite, destination} = point;
   const favorite = isFavorite ? 'active' : '';
 
@@ -62,14 +62,25 @@ export default class tripEventList extends AbstractView {
   #point = null;
   #offer = null;
   #destinations = null;
-  constructor ({point, offer, destinations}){
+  #handleClickPoint = null;
+
+  constructor ({destinations, point, offer, onPointClick}){
     super();
     this.#point = point;
     this.#offer = offer;
     this.#destinations = destinations;
+    this.#handleClickPoint = onPointClick;
+
+    this.element.querySelector('.event__rollup-btn')
+      .addEventListener('click', this.#editClickPoint);
   }
 
   get template() {
-    return renderTripEventItems(this.#point, this.#offer, this.#destinations);
+    return renderTripEventItems(this.#destinations, this.#point, this.#offer);
   }
+
+  #editClickPoint = (evt) => {
+    evt.preventDefault();
+    this.#handleClickPoint();
+  };
 }
