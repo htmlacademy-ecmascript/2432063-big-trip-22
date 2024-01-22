@@ -1,11 +1,11 @@
 import { render, replace } from '../framework/render';
-import tripEventList from '../view/trip-events-list.js';
-import sortListTrip from '../view/sort-list-trip.js';
-import eventEdit from '../view/event-edit.js';
+import TripEventList from '../view/trip-events-list.js';
+import SortListTrip from '../view/sort-list-trip.js';
+import EventEdit from '../view/event-edit.js';
 
 export default class BoardPresenter {
   #boardContainer;
-  #liastPointsTripModel;
+  #listPointsTripModel;
   #offersModel;
   #destinationsModel;
   #liastPoints;
@@ -13,17 +13,17 @@ export default class BoardPresenter {
 
   constructor({boardContainer, listPointsTripModel, offersModel, destinationsModel}) {
     this.#boardContainer = boardContainer;
-    this.#liastPointsTripModel = listPointsTripModel;
+    this.#listPointsTripModel = listPointsTripModel;
     this.#offersModel = offersModel;
     this.#destinationsModel = destinationsModel;
   }
 
   init() {
-    this.#liastPoints = [...this.#liastPointsTripModel.points];
+    this.#liastPoints = [...this.#listPointsTripModel.points];
     this.#offersModel = [...this.#offersModel.byType];
     this.#destinations = [...this.#destinationsModel.byId];
 
-    render (new sortListTrip(), this.#boardContainer);
+    render (new SortListTrip(), this.#boardContainer);
 
     for (let i = 0; i <= this.#liastPoints.length; i++) {
       this.#renderPoint(this.#destinations, this.#liastPoints[i], this.#offersModel);
@@ -40,7 +40,7 @@ export default class BoardPresenter {
       }
     };
 
-    const pointComponent = new tripEventList({
+    const pointComponent = new TripEventList({
       destinations,
       point,
       offer,
@@ -49,8 +49,9 @@ export default class BoardPresenter {
         document.addEventListener('keydown', escKeyDownHandler);
       }
     });
-    const pointEdit = new eventEdit({
+    const pointEdit = new EventEdit({
       destinations,
+      point,
       onSaveEdit: () => {
         replaceEditToPoint();
         document.removeEventListener('keydown', escKeyDownHandler);

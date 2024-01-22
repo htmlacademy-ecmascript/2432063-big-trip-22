@@ -31,7 +31,7 @@ function renderSortTripList() {
   );
 }
 
-export default class sortListTrip extends AbstractView {
+export default class SortListTrip extends AbstractView {
   get template() {
     return renderSortTripList();
   }

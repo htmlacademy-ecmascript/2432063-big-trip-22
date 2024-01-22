@@ -58,7 +58,7 @@ const renderTripEventItems = (destinations, point, offer) => {
 };
 
 
-export default class tripEventList extends AbstractView {
+export default class TripEventList extends AbstractView {
   #point = null;
   #offer = null;
   #destinations = null;

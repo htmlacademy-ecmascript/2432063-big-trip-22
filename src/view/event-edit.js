@@ -8,7 +8,8 @@ const eventTypes = () => (
     <label class="event__type-label  event__type-label--${eventType.toLowerCase()}" for="event-type-taxi-1">${eventType}</label>
     </div>`).join (' '));
 
-const renderEeventEdit = (destinations) => {
+const renderEeventEdit = (destinations, point) => {
+  const {type} = point;
   const getByDest = (offerType) => destinations.find(({ id }) => id === offerType);
   const {description} = getByDest('dest1');
   const {src} = getByDest('dest1').pictures[0];
@@ -26,7 +27,7 @@ const renderEeventEdit = (destinations) => {
             <div class="event__type-wrapper">
               <label class="event__type  event__type-btn" for="event-type-toggle-1">
                 <span class="visually-hidden">Choose event type</span>
-                <img class="event__type-icon" width="17" height="17" src="img/icons/flight.png" alt="Event type icon">
+                <img class="event__type-icon" width="17" height="17" src="img/icons/${type.toLowerCase()}.png" alt="Event type icon">
               </label>
               <input class="event__type-toggle  visually-hidden" id="event-type-toggle-1" type="checkbox">
 
@@ -42,7 +43,7 @@ const renderEeventEdit = (destinations) => {
 
             <div class="event__field-group  event__field-group--destination">
               <label class="event__label  event__type-output" for="event-destination-1">
-                Flight
+                ${type}
               </label>
               <input class="event__input  event__input--destination" id="event-destination-1" type="text" name="event-destination" value="Geneva" list="destination-list-1">
               <datalist id="destination-list-1">
@@ -140,23 +141,25 @@ const renderEeventEdit = (destinations) => {
 
 };
 
-export default class eventEdit extends AbstractView {
+export default class EventEdit extends AbstractView {
   #destinations = null;
+  #point = null;
   #handleSaveEdit = null;
 
-  constructor ({destinations, onSaveEdit}){
+  constructor ({destinations, point, onSaveEdit}){
     super();
     this.#destinations = destinations;
+    this.#point = point;
     this.#handleSaveEdit = onSaveEdit;
 
-    this.element.querySelector('.event__save-btn').addEventListener('click', this.#SaveEditHandler);
+    this.element.querySelector('.event__save-btn').addEventListener('click', this.#saveEditHandler);
   }
 
   get template() {
-    return renderEeventEdit(this.#destinations);
+    return renderEeventEdit(this.#destinations, this.#point);
   }
 
-  #SaveEditHandler = (evt) => {
+  #saveEditHandler = (evt) => {
     evt.preventDefault();
     this.#handleSaveEdit();
   };
