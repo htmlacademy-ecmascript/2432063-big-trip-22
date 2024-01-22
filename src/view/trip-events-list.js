@@ -1,8 +1,8 @@
-import { createElement } from '../render';
+import AbstractView from '../framework/view/abstract-view';
 import { getDuratiomAsString, getHoursFromString, getMinutesFromString, normalizeEventDate } from '../utils';
 
 
-const renderTripEventItems = (point, offer, destinations) => {
+const renderTripEventItems = (destinations, point, offer) => {
   const {dateFrom, dateTo, basePrice, type, isFavorite, destination} = point;
   const favorite = isFavorite ? 'active' : '';
 
@@ -58,24 +58,29 @@ const renderTripEventItems = (point, offer, destinations) => {
 };
 
 
-export default class tripEventList {
-  constructor ({point, offer, destinations}){
-    this.point = point;
-    this.offer = offer;
-    this.destinations = destinations;
+export default class TripEventList extends AbstractView {
+  #point = null;
+  #offer = null;
+  #destinations = null;
+  #handleClickPoint = null;
+
+  constructor ({destinations, point, offer, onPointClick}){
+    super();
+    this.#point = point;
+    this.#offer = offer;
+    this.#destinations = destinations;
+    this.#handleClickPoint = onPointClick;
+
+    this.element.querySelector('.event__rollup-btn')
+      .addEventListener('click', this.#editClickPoint);
   }
 
-  getTemplate = () => renderTripEventItems(this.point, this.offer, this.destinations);
+  get template() {
+    return renderTripEventItems(this.#destinations, this.#point, this.#offer);
+  }
 
-  getElement = () => {
-    if (!this.element) {
-      this.element = createElement(this.getTemplate());
-    }
-
-    return this.element;
-  };
-
-  removeElement = () => {
-    this.element = null;
+  #editClickPoint = (evt) => {
+    evt.preventDefault();
+    this.#handleClickPoint();
   };
 }

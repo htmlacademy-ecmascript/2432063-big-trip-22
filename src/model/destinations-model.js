@@ -1,7 +1,10 @@
 export default class DestinationsModel {
+  #destinations = null;
   constructor(destinations) {
-    this.destinations = destinations;
+    this.#destinations = destinations;
   }
 
-  getById = () => this.destinations;
+  get byId () {
+    return this.#destinations;
+  }
 }
