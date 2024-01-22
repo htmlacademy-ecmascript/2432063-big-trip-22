@@ -163,4 +163,5 @@ export default class EventEdit extends AbstractView {
     evt.preventDefault();
     this.#handleSaveEdit();
   };
+
 }
