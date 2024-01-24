@@ -1,7 +1,6 @@
-import { render, replace } from '../framework/render';
-import TripEventList from '../view/trip-events-list.js';
+import { render } from '../framework/render';
 import SortListTrip from '../view/sort-list-trip.js';
-import EventEdit from '../view/event-edit.js';
+import PointsPresenter from './points-presenter.js';
 
 export default class BoardPresenter {
   #boardContainer;
@@ -31,42 +30,10 @@ export default class BoardPresenter {
   }
 
   #renderPoint(destinations, point, offer) {
-
-    const escKeyDownHandler = (evt) => {
-      if (evt.key === 'Escape') {
-        evt.preventDefault();
-        replaceEditToPoint();
-        document.removeEventListener('keydown', escKeyDownHandler);
-      }
-    };
-
-    const pointComponent = new TripEventList({
-      destinations,
-      point,
-      offer,
-      onPointClick: () => {
-        replacePoinToEdit();
-        document.addEventListener('keydown', escKeyDownHandler);
-      }
-    });
-    const pointEdit = new EventEdit({
-      destinations,
-      point,
-      onSaveEdit: () => {
-        replaceEditToPoint();
-        document.removeEventListener('keydown', escKeyDownHandler);
-      }
-    });
-
-    function replacePoinToEdit() {
-      replace(pointEdit, pointComponent);
-    }
-
-    function replaceEditToPoint() {
-      replace(pointComponent, pointEdit);
-    }
-
-    render (pointComponent, this.#boardContainer);
+    const pointsPresenter = new PointsPresenter({
+      boardContainer: this.#boardContainer,}
+    );
+    pointsPresenter.init(destinations, point, offer);
   }
 }
 
