@@ -35,10 +35,14 @@ const getMinutesFromString = (dateString) => {
 const getRandomArrayElement = (items) =>
   items[Math.floor(Math.random() * items.length)];
 
+const updateItem = (items, newItem) =>
+  items.map((item) => (item.id === newItem.id ? newItem : item));
+
 export {
   getRandomArrayElement,
   normalizeEventDate,
   getDuratiomAsString,
   getHoursFromString,
   getMinutesFromString,
+  updateItem,
 };
