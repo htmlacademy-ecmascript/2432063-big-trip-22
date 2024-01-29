@@ -42,7 +42,7 @@ export default class BoardPresenter {
     pointsPresenter.init(destinations, point, offer);
   }
 
-  #onEventChange = (updateEvent) => {
+  #onEventChange = (/*updateEvent*/) => {
     // this.#boardEvents = updateItem(this.#boardEvents, updateEvent);
     // this.#pointsPresenter.get(updateEvent.id).init(updateEvent);
   };
