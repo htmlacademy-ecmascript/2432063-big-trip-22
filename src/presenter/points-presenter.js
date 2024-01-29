@@ -7,13 +7,15 @@ export default class PointsPresenter {
   #destinations;
   #point;
   #offer;
+  #onEventChange = null;
 
-  constructor({boardContainer}) {
+  constructor({boardContainer, onEventChange}) {
     this.#boardContainer = boardContainer;
+    this.#onEventChange = onEventChange;
+
   }
 
   init(destinations, point, offer) {
-
     this.#point = point;
     this.#destinations = destinations;
     this.#offer = offer;
@@ -33,6 +35,13 @@ export default class PointsPresenter {
       onPointClick: () => {
         replacePoinToEdit();
         document.addEventListener('keydown', escKeyDownHandler);
+      },
+      onFavoriteClick: () => {
+        this.#onEventChange({
+          ...this.#point,
+          isFavorite: !this.#point.isFavorite,
+        });
+        loga();
       }
     });
     const pointEdit = new EventEdit({
@@ -50,6 +59,10 @@ export default class PointsPresenter {
 
     function replaceEditToPoint() {
       replace(pointComponent, pointEdit);
+    }
+
+    function loga() {
+      console.log('Log');
     }
 
     render (pointComponent, this.#boardContainer);
