@@ -41,7 +41,7 @@ export default class PointsPresenter {
           ...this.#point,
           isFavorite: !this.#point.isFavorite,
         });
-        loga();
+
       }
     });
     const pointEdit = new EventEdit({
@@ -61,9 +61,6 @@ export default class PointsPresenter {
       replace(pointComponent, pointEdit);
     }
 
-    function loga() {
-      console.log('Log');
-    }
 
     render (pointComponent, this.#boardContainer);
   }

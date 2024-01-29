@@ -1,7 +1,7 @@
 import { render } from '../framework/render';
 import SortListTrip from '../view/sort-list-trip.js';
 import PointsPresenter from './points-presenter.js';
-import { updateItem } from '../utils.js';
+//import { updateItem } from '../utils.js';
 
 export default class BoardPresenter {
   #boardContainer;
